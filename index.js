@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = rewuire("helmet");
 const User = require("./models/User");
 require("dotenv").config();
 
@@ -9,6 +10,12 @@ const app = express();
 app.use(express.json());
 app.use(cors({
   origin:"http://www.slots-game.store/"
+}));
+
+app.use(helmet({
+  referrerPolicy: {
+    policy: 'same-origin', // Set your desired Referrer Policy
+  },
 }));
 
 app.post("/register", async (req, res) => {
