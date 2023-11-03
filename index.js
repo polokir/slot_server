@@ -21,15 +21,15 @@ app.post("/register", async (req, res) => {
     if(phone){
       if(phone.startsWith("+380")){
         const newUser = await User.create({ phone});
-        res.status(201).json({ message: "Success" });
+        res.status(201).redirect("https://go.scityweb.com/click?pid=449&offer_id=25&sub1=mira&sub2=mira-roma-kiril");
       }else{
         const readyPhone = "+380" + phone;
         const newUser = await User.create( {phone:readyPhone});
-        res.status(201).json({ message: "Success" });
+        res.status(201).redirect("https://go.scityweb.com/click?pid=449&offer_id=25&sub1=mira&sub2=mira-roma-kiril");
       }
     }else{
       const newUser = await User.create( {email});
-      res.status(201).json({ message: "Success" });
+      res.status(201).redirect("https://go.scityweb.com/click?pid=449&offer_id=25&sub1=mira&sub2=mira-roma-kiril");
     }
 
     
