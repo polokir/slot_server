@@ -7,7 +7,9 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:"http://www.slots-game.store/"
+}));
 
 app.post("/register", async (req, res) => {
   const { email, phone } = req.body;
