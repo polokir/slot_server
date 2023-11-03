@@ -1,8 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const helmet = require('helmet');
 const User = require("./models/User");
+const https = require("http")
+const fs = require("fs")
 require("dotenv").config();
 
 const app = express();
@@ -10,6 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+
+const options = {
+  key: fs.readFileSync('./ssl-key.pem'),
+  cert: fs.readFileSync('./ssl-sert.pem'),
+};
+
+console.log(options.cert)
 
 
 app.post("/register", async (req, res) => {
@@ -42,7 +50,8 @@ app.post("/register", async (req, res) => {
 });
 
 const start = () => {
-  app.listen(process.env.PORT, () => {
+  const server = https.createServer(options,app)
+  server.listen(process.env.PORT, () => {
     console.log("Server running. Use our API on port: 5000");
   });
 
