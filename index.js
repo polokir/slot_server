@@ -1,14 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-
 const User = require("./models/User");
 require("dotenv").config();
 
 const app = express();
 
+
+const corsOption = {
+  credentials: true,
+  origin: ['https://www.slots-game.store']
+}
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOption));
 
 
 
@@ -35,7 +40,6 @@ app.post("/register", async (req, res) => {
       res.status(201).json({ message: "Success" });
     }
 
-    
   } catch (error) {
     res.status(500).json({ message: "Error" });
   }
