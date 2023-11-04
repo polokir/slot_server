@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const User = require("./models/User");
+const http = require('http');
 require("dotenv").config();
 
 const app = express();
@@ -9,7 +10,7 @@ const app = express();
 
 const corsOption = {
   credentials: true,
-  origin: ['https://www.slots-game.store']
+  origin: 'https://www.slots-game.store'
 }
 
 app.use(express.json());
