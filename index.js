@@ -47,7 +47,7 @@ app.post("/register", async (req, res) => {
 
 const start = () => {
   app.listen(process.env.PORT, () => {
-    console.log("Server running. Use our API on port: 5000");
+    console.log(`Server running. Use our API on port: ${process.env.PORT}`);
   });
 
   mongoose
