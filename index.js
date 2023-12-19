@@ -1,20 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require("cors");
-const User = require("./models/User");
-const http = require('http');
-require("dotenv").config();
-
 const app = express();
-
-
-const corsOption = {
-  credentials: true,
-  origin: 'https://www.slots-game.store'
-}
-
+var cors = require("cors");
+app.use(cors({
+  origin:'*',
+  credentials:true,
+  optionsSuccessStatus:200
+}));
+const User = require("./models/User");
+require("dotenv").config();
 app.use(express.json());
-app.use(cors(corsOption));
 
 
 
@@ -45,6 +40,8 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ message: "Error" });
   }
 });
+
+app.options('*', cors())
 
 const start = () => {
   app.listen(process.env.PORT, () => {
